@@ -116,6 +116,14 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
+/* 初出時の注釈テキスト用スタイル */
+.icon-annotation {
+    font-size: 0.85em; /* 本文より少し小さくする */
+    color: #555;       /* 少しグレーにして強調しすぎない */
+    margin-left: 2px;
+    font-weight: normal;
+}
+
 /* Memory Card Layout - Mapping coordinates from XML */
 .memory-card {
     position: relative;

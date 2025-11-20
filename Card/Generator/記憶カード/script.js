@@ -80,10 +80,23 @@ class CardBuilderApplication {
         // 2. 改行コードを <br> に変換
         escaped = escaped.replace(/\n/g, '<br>');
 
-        // 3. $icon{タグ名} を <img ...> に置換
-        // Resources/Icon/[タグ名].png を参照
-        escaped = escaped.replace(/\$icon\{([^}]+)\}/g, (match, tagName) => {
-            return `<img src="Resources/Icon/${tagName}.png" class="inline-icon" alt="${tagName}" />`;
+        // 出現したタグを記録するためのSet
+        const seenTags = new Set();
+
+        // 3. $icon{タグ名} を置換
+       escaped = escaped.replace(/\$icon\{([^}]+)\}/g, (match, tagName) => {
+            // 画像タグの生成
+            const imgTag = `<img src="Resources/Icon/${tagName}.png" class="inline-icon" alt="${tagName}" />`;
+
+            if (!seenTags.has(tagName)) {
+                // 初出の場合：セットに記録し、「アイコン(タグ名)」の形式で返す
+                seenTags.add(tagName);
+                // デザイン調整用にspanで囲む（文字サイズを少し小さくするなどCSSで調整可能にするため）
+                return `${imgTag}<span class="icon-annotation">(${tagName})</span>`;
+            } else {
+                // 2回目以降の場合：「アイコン」のみ返す
+                return imgTag;
+            }
         });
         escaped = escaped.replace(/「/g, '｢')
         .replace(/」/g, '｣')
