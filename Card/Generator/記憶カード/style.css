@@ -1,0 +1,286 @@
+:root {
+    --card-width: 850px;
+    --card-height: 1400px;
+    --font-mincho: 'BIZ UDPMincho', serif;
+    --font-gothic: 'BIZ UDPGothic', sans-serif;
+    --font-hand: 'Klee One', cursive;
+    --bg-color: #f4f4f9;
+    --sidebar-width: 350px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-gothic);
+    background-color: var(--bg-color);
+    height: 100vh;
+    overflow: hidden;
+}
+
+.app-container {
+    display: flex;
+    height: 100%;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: var(--sidebar-width);
+    background: white;
+    padding: 20px;
+    overflow-y: auto;
+    border-right: 1px solid #ddd;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+    z-index: 10;
+}
+
+.sidebar h1 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+.form-group input[type="file"] {
+    font-size: 0.9rem;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.btn.primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn.primary:hover { background-color: #0056b3; }
+
+.btn.secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn.secondary:hover { background-color: #545b62; }
+
+/* Preview Area Styling */
+.preview-area {
+    flex: 1;
+    background-color: #e9ecef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    padding: 20px;
+}
+
+.preview-wrapper {
+    /* Scales the card down to fit the screen */
+    transform: scale(0.45); 
+    transform-origin: center center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* Memory Card Layout - Mapping coordinates from XML */
+.memory-card {
+    position: relative;
+    width: var(--card-width);
+    height: var(--card-height);
+    background-color: white;
+    overflow: hidden; /* Clip anything outside */
+    border: 1px solid #000; /* Optional outer border */
+}
+
+/* Absolute Positioning Helpers */
+.memory-card > div, .memory-card > svg {
+    position: absolute;
+}
+
+/* 1. Image Layer (FP8hBfjytboR9a7PyeOW-1) */
+.card-image-layer {
+    top: 260px;
+    left: 40px;
+    width: 740px;
+    height: 540px;
+    background-color: #f0f0f0; /* Placeholder */
+    background-size: cover;
+    background-position: center;
+    border: 2px dashed #ccc; /* Visual guide for placeholder */
+}
+
+/* 2. Background Curve (rHbPwuJmVqwy9-EArj8U-1) */
+.bg-curve {
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+/* 3. Memory Weight (rHbPwuJmVqwy9-EArj8U-4 & 6) */
+.label-weight {
+    top: 30px;
+    left: 320px;
+    width: 210px;
+    text-align: center;
+    font-size: 25px;
+    color: #000;
+}
+
+.val-weight {
+    top: 50px;
+    left: 310px;
+    width: 230px;
+    height: 200px;
+    text-align: center;
+    font-family: var(--font-mincho);
+    font-size: 200px;
+    font-weight: bold;
+    line-height: 200px;
+}
+
+/* 4. Atonement (rHbPwuJmVqwy9-EArj8U-7 & 8) */
+.val-atonement {
+    top: 1210px;
+    left: 700px;
+    width: 130px;
+    height: 130px;
+    text-align: center;
+    font-family: var(--font-mincho);
+    font-size: 100px;
+    font-weight: bold;
+    line-height: 130px;
+}
+
+.label-atonement {
+    top: 1340px;
+    left: 690px;
+    width: 150px;
+    text-align: center;
+    font-family: Helvetica, sans-serif;
+    font-size: 22px;
+}
+
+/* 5. Card Name (rHbPwuJmVqwy9-EArj8U-12) */
+.val-name {
+    top: 800px;
+    left: 40px;
+    width: 760px;
+    height: 50px;
+    font-family: var(--font-gothic);
+    font-size: 38px;
+    font-weight: bold;
+    border-bottom: 2px solid #000;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* 6. Description (rHbPwuJmVqwy9-EArj8U-10) */
+.val-desc {
+    top: 850px;
+    left: 40px;
+    width: 760px;
+    height: 320px;
+    font-family: var(--font-gothic);
+    font-size: 32px;
+    white-space: pre-wrap;
+    padding-top: 10px;
+    line-height: 1.4;
+}
+
+/* 7. Flavor Text (rHbPwuJmVqwy9-EArj8U-21) */
+/* Note: XML specifies rotation -90. CSS rotation pivots can be tricky.
+   The XML box is x:419, y:389, w:772, h:51. 
+   Vertical writing mode is safer than rotation for text reflow. */
+.val-flavor {
+    /* Approximate visual position based on XML bounds after rotation */
+    top: 40px; 
+    right: 30px; 
+    width: 60px;
+    height: 770px;
+    font-family: var(--font-hand);
+    font-size: 24px;
+    writing-mode: vertical-rl;
+    text-align: left; /* Because vertical-rl, this aligns to top */
+    white-space: pre-wrap;
+}
+
+/* 8. Auxiliary Text (rHbPwuJmVqwy9-EArj8U-18) */
+.val-aux {
+    top: 1180px;
+    left: 40px;
+    width: 560px;
+    height: 100px;
+    font-family: var(--font-gothic);
+    font-size: 19px;
+    white-space: pre-wrap;
+}
+
+/* タグアイコン: 画像として表示するための調整 */
+.tag-icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 1px solid #000;
+    background-color: white; /* 背景色を追加 */
+    object-fit: contain; /* 画像が枠内に収まるように */
+    padding: 5px; /* 画像が枠ギリギリにならないように少し余白 */
+    display: none; /* デフォルトは非表示（src設定時にJSでblockにする、またはonerrorで制御） */
+}
+
+/* インラインアイコン: 文中の $icon{...} 用 */
+.inline-icon {
+    height: 1.1em; /* 文字サイズよりわずかに大きくして視認性を良くする */
+    width: auto;
+    vertical-align: -0.2em; /* ベースライン調整（文字の高さに合わせる） */
+    margin: 0 2px;
+    display: inline-block;
+}
+
+.tag-icon.pos-1 { top: 40px; left: 40px; }
+.tag-icon.pos-2 { top: 40px; left: 150px; }
+.tag-icon.pos-3 { top: 150px; left: 40px; }
+
+/* 10. Bottom Label (rHbPwuJmVqwy9-EArj8U-3) */
+.label-card-type {
+    top: 1335px;
+    left: 235px;
+    width: 380px;
+    text-align: center;
+    font-size: 32px;
+}

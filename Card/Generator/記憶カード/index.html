@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>記憶カード生成ツール</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=BIZ+UDPMincho:wght@700&family=Klee+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+<div class="app-container">
+    <aside class="sidebar">
+        <h1>記憶カード作成</h1>
+        <form id="cardForm">
+            <div class="form-group">
+                <label for="cardImage">カード画像 (メイン)</label>
+                <input type="file" id="cardImage" accept="image/*">
+            </div>
+
+            <div class="form-group">
+                <label for="memoryWeight">記憶の重み (数字)</label>
+                <input type="number" id="memoryWeight" value="5">
+            </div>
+
+            <div class="form-group">
+                <label for="atonementCost">償い必要数 (数字)</label>
+                <input type="number" id="atonementCost" value="3">
+            </div>
+
+            <div class="form-group">
+                <label for="cardName">カード名</label>
+                <input type="text" id="cardName" value="忘却の彼方">
+            </div>
+
+            <div class="form-group">
+                <label for="cardDesc">カード説明</label>
+                <textarea id="cardDesc" rows="6">■効果テキスト
+　➤詳細な効果説明
+　➤追加の効果</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="flavorText">フレーバーテキスト (縦書き)</label>
+                <textarea id="flavorText" rows="3">それは、遠い昔の記憶。
+決して消えることのない傷跡。</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="auxText">補助テキスト (下部)</label>
+                <textarea id="auxText" rows="3">補助的な注釈
+ここに入ります。</textarea>
+            </div>
+
+            <div class="form-group">
+                <label>タグ設定 (左上のアイコン)</label>
+                <div style="display: flex; gap: 5px;">
+                    <input type="text" id="tagInput1" placeholder="タグ1 (例: fire)">
+                    <input type="text" id="tagInput2" placeholder="タグ2">
+                    <input type="text" id="tagInput3" placeholder="タグ3">
+                </div>
+                <small style="color: #666; font-size: 0.8em;">※ Resources/Icon/[名前].png を参照します</small>
+            </div>
+
+            <div class="actions">
+                <button type="button" id="btnDownloadImg" class="btn primary">画像を保存 (PNG)</button>
+                <button type="button" id="btnDownloadXml" class="btn secondary">データを保存 (XML)</button>
+            </div>
+        </form>
+    </aside>
+
+    <main class="preview-area">
+        <div class="preview-wrapper">
+            <div id="memoryCard" class="memory-card">
+                <div id="previewImage" class="card-image-layer"></div>
+                
+                <svg class="bg-curve" width="850" height="1400" viewBox="0 0 850 1400" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 0 1360 C 230 1320 470 1320 550 1300 S 730 1170 850 1180" stroke="black" stroke-width="2" fill="none"/>
+                </svg>
+
+                <img id="previewTag1" class="tag-icon pos-1" src="" alt="" onerror="this.style.display='none'">
+                <img id="previewTag2" class="tag-icon pos-2" src="" alt="" onerror="this.style.display='none'">
+                <img id="previewTag3" class="tag-icon pos-3" src="" alt="" onerror="this.style.display='none'">
+
+                <div class="label-weight">記憶の重み</div>
+                <div id="previewWeight" class="val-weight">5</div>
+
+                <div id="previewFlavor" class="val-flavor">フレーバーテキスト</div>
+
+                <div id="previewName" class="val-name">カード名</div>
+                <div id="previewDesc" class="val-desc">説明文</div>
+
+                <div id="previewAux" class="val-aux">補助テキスト</div>
+
+                <div id="previewAtonement" class="val-atonement">3</div>
+                <div class="label-atonement">償い必要数</div>
+                
+                <div class="label-card-type">記憶カード</div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
