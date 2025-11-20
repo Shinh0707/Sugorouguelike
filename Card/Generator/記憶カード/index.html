@@ -20,6 +20,23 @@
                 <label for="cardImage">カード画像 (メイン)</label>
                 <input type="file" id="cardImage" accept="image/*">
             </div>
+            <div class="form-group">
+                <label>画像位置調整</label>
+                <div style="display: flex; gap: 5px; margin-bottom: 5px;">
+                    <div style="flex: 1;">
+                        <label for="imgScale" style="font-size: 0.8em;">倍率</label>
+                        <input type="number" id="imgScale" value="1.0" step="0.1" min="0.1">
+                    </div>
+                    <div style="flex: 1;">
+                        <label for="imgX" style="font-size: 0.8em;">X (横)</label>
+                        <input type="number" id="imgX" value="0" step="10">
+                    </div>
+                    <div style="flex: 1;">
+                        <label for="imgY" style="font-size: 0.8em;">Y (縦)</label>
+                        <input type="number" id="imgY" value="0" step="10">
+                    </div>
+                </div>
+            </div>
 
             <div class="form-group">
                 <label for="memoryWeight">記憶の重み (数字)</label>
@@ -74,7 +91,9 @@
     <main class="preview-area">
         <div class="preview-wrapper">
             <div id="memoryCard" class="memory-card">
-                <div id="previewImage" class="card-image-layer"></div>
+                <div id="previewImageContainer" class="card-image-layer">
+                    <img id="previewImageTag" src="" alt="" style="display:none;">
+                </div>
                 
                 <svg class="bg-curve" width="850" height="1400" viewBox="0 0 850 1400" xmlns="http://www.w3.org/2000/svg">
                     <path d="M 0 1360 C 230 1320 470 1320 550 1300 S 730 1170 850 1180" stroke="black" stroke-width="2" fill="none"/>

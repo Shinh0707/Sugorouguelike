@@ -140,15 +140,30 @@ body {
 }
 
 /* 1. Image Layer (FP8hBfjytboR9a7PyeOW-1) */
+/* 画像レイヤー（コンテナ） */
 .card-image-layer {
     top: 260px;
-    left: 40px;
+    left: 60px;
     width: 740px;
     height: 540px;
-    background-color: #f0f0f0; /* Placeholder */
-    background-size: cover;
-    background-position: center;
-    border: 2px dashed #ccc; /* Visual guide for placeholder */
+    background-color: #f0f0f0; /* 初期背景（グレー） */
+    border: 2px dashed #ccc;   /* 初期枠線 */
+    
+    /* 内部の画像を中央配置＆はみ出しトリミング */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute; /* 既存の配置維持 */
+}
+
+/* プレビュー用画像タグ */
+#previewImageTag {
+    /* flexで中央寄せされるが、object-fit: cover の挙動をJSで模倣するため */
+    /* ここでは最小限のスタイルのみ。サイズとTransformはJSで制御 */
+    display: block;
+    transform-origin: center center;
+    /* 透過画像対策: 画像自体ではなくコンテナの背景を白にするのでここは触らない */
 }
 
 /* 2. Background Curve (rHbPwuJmVqwy9-EArj8U-1) */
